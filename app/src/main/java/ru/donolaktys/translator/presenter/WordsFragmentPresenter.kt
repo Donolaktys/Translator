@@ -1,14 +1,14 @@
 package ru.donolaktys.translator.presenter
 
-import geekbrains.ru.translator.model.datasource.DataSourceLocal
-import geekbrains.ru.translator.model.datasource.DataSourceRemote
-import geekbrains.ru.translator.rx.SchedulerProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import ru.donolaktys.translator.Contract
 import ru.donolaktys.translator.data.AppState
 import ru.donolaktys.translator.interactor.WordsFragmentInteractor
+import ru.donolaktys.translator.model.datasource.DataSourceLocal
+import ru.donolaktys.translator.model.datasource.DataSourceRemote
 import ru.donolaktys.translator.repository.RepositoryImplementation
+import ru.donolaktys.translator.rx.SchedulerProvider
 
 class WordsFragmentPresenter<T : AppState, V : Contract.View>(
     private val interactor: WordsFragmentInteractor = WordsFragmentInteractor(

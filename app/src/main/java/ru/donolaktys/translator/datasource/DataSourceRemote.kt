@@ -1,4 +1,4 @@
-package geekbrains.ru.translator.model.datasource
+package ru.donolaktys.translator.model.datasource
 
 import io.reactivex.rxjava3.core.Observable
 import ru.donolaktys.translator.Contract

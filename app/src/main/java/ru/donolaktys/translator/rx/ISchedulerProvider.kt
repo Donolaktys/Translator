@@ -1,4 +1,4 @@
-package geekbrains.ru.translator.rx
+package ru.donolaktys.translator.rx
 
 import io.reactivex.rxjava3.core.Scheduler
 

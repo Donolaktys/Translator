@@ -82,6 +82,7 @@ class SearchDialogFragment : BottomSheetDialogFragment(), TextView.OnEditorActio
         binding = null
         super.onDestroyView()
     }
+
     companion object {
         fun newInstance(): SearchDialogFragment {
             return SearchDialogFragment()
