@@ -5,19 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.donolaktys.translator.Contract
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.data.AppState
 import ru.donolaktys.translator.data.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsBinding
-import ru.donolaktys.translator.presenter.WordsFragmentPresenter
 import ru.donolaktys.translator.view.base.BaseFragment
 import ru.donolaktys.translator.view.main.adapter.WordsFragmentAdapter
+import ru.donolaktys.translator.viewmodel.WordsViewModel
 
 class WordsFragment : BaseFragment<AppState>() {
     private var adapter: WordsFragmentAdapter? = null
     private var binding: FragmentWordsBinding? = null
+
+    private val observer = Observer<AppState> { renderData(it) }
+
+    override val viewModel: WordsViewModel by lazy {
+        ViewModelProvider.NewInstanceFactory().create(WordsViewModel::class.java)
+    }
 
     private val onListItemClickListener: WordsFragmentAdapter.OnListItemClickListener =
         object : WordsFragmentAdapter.OnListItemClickListener {
@@ -25,10 +32,6 @@ class WordsFragment : BaseFragment<AppState>() {
                 Toast.makeText(requireContext(), data.text, Toast.LENGTH_SHORT).show()
             }
         }
-
-    override fun createPresenter(): Contract.Presenter<AppState, Contract.View> {
-        return WordsFragmentPresenter()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,11 +44,12 @@ class WordsFragment : BaseFragment<AppState>() {
             searchDialogFragment.setOnSearchListener(object :
                 SearchDialogFragment.OnSearchListener {
                 override fun onClick(searchWord: String) {
-                    presenter.getData(searchWord, true)
+                    viewModel.getData(searchWord, true)
                 }
             })
             searchDialogFragment.show(childFragmentManager, BOTTOM_SHEET_FRAGMENT_DIALOG_TAG)
         }
+        viewModel.subscribe().observe(this, observer)
         return binding?.root
     }
 
@@ -88,7 +92,7 @@ class WordsFragment : BaseFragment<AppState>() {
         showViewError()
         binding?.errorTextview?.text = error ?: getString(R.string.undefined_error)
         binding?.reloadButton?.setOnClickListener {
-            presenter.getData("hi", true)
+            viewModel.getData("search", true)
         }
     }
 
