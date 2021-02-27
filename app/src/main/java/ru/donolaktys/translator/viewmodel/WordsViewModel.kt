@@ -2,19 +2,13 @@ package ru.donolaktys.translator.viewmodel
 
 import androidx.lifecycle.LiveData
 import io.reactivex.rxjava3.observers.DisposableObserver
-import ru.donolaktys.translator.Contract
 import ru.donolaktys.translator.data.AppState
 import ru.donolaktys.translator.interactor.WordsFragmentInteractor
-import ru.donolaktys.translator.model.datasource.DataSourceLocal
-import ru.donolaktys.translator.model.datasource.DataSourceRemote
-import ru.donolaktys.translator.repository.RepositoryImplementation
+import javax.inject.Inject
 
-class WordsViewModel (
-    private val interactor: Contract.Interactor<AppState> = WordsFragmentInteractor(
-        RepositoryImplementation(DataSourceRemote()),
-        RepositoryImplementation(DataSourceLocal())
-    )
-) : BaseViewModel<AppState>() {
+class WordsViewModel @Inject constructor(
+    private val interactor: WordsFragmentInteractor
+    ) : BaseViewModel<AppState>() {
 
     private var appState: AppState? = null
 

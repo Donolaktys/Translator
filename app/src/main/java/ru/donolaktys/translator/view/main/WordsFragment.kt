@@ -1,5 +1,6 @@
 package ru.donolaktys.translator.view.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,27 +13,28 @@ import ru.donolaktys.translator.R
 import ru.donolaktys.translator.data.AppState
 import ru.donolaktys.translator.data.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsBinding
+import ru.donolaktys.translator.di.TranslatorApp
 import ru.donolaktys.translator.view.base.BaseFragment
 import ru.donolaktys.translator.view.main.adapter.WordsFragmentAdapter
 import ru.donolaktys.translator.viewmodel.WordsViewModel
+import javax.inject.Inject
 
 class WordsFragment : BaseFragment<AppState>() {
+
+    @Inject
+    internal lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    override val viewModel: WordsViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory).get(WordsViewModel::class.java)
+    }
+
     private var adapter: WordsFragmentAdapter? = null
     private var binding: FragmentWordsBinding? = null
 
-    private val observer = Observer<AppState> { renderData(it) }
-
-    override val viewModel: WordsViewModel by lazy {
-        ViewModelProvider.NewInstanceFactory().create(WordsViewModel::class.java)
+    override fun onAttach(context: Context) {
+        TranslatorApp.component.inject(this)
+        super.onAttach(context)
     }
-
-    private val onListItemClickListener: WordsFragmentAdapter.OnListItemClickListener =
-        object : WordsFragmentAdapter.OnListItemClickListener {
-            override fun onItemClick(data: DataModel) {
-                Toast.makeText(requireContext(), data.text, Toast.LENGTH_SHORT).show()
-            }
-        }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -88,6 +90,15 @@ class WordsFragment : BaseFragment<AppState>() {
         }
     }
 
+    private val observer = Observer<AppState> { renderData(it) }
+
+    private val onListItemClickListener: WordsFragmentAdapter.OnListItemClickListener =
+        object : WordsFragmentAdapter.OnListItemClickListener {
+            override fun onItemClick(data: DataModel) {
+                Toast.makeText(requireContext(), data.text, Toast.LENGTH_SHORT).show()
+            }
+        }
+
     private fun showErrorScreen(error: String?) {
         showViewError()
         binding?.errorTextview?.text = error ?: getString(R.string.undefined_error)
@@ -120,12 +131,8 @@ class WordsFragment : BaseFragment<AppState>() {
         }
     }
 
-    override fun onDestroyView() {
-        binding = null
-        super.onDestroyView()
-    }
-
     override fun onDestroy() {
+        binding = null
         adapter = null
         super.onDestroy()
     }
