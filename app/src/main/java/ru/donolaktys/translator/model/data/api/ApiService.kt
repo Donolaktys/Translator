@@ -1,9 +1,9 @@
-package ru.donolaktys.translator.datasource
+package ru.donolaktys.translator.model.data.api
 
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.donolaktys.translator.data.DataModel
+import ru.donolaktys.translator.model.data.DataModel
 
 interface ApiService {
 

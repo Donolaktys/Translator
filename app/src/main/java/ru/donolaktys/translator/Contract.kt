@@ -1,7 +1,7 @@
 package ru.donolaktys.translator
 
 import io.reactivex.rxjava3.core.Observable
-import ru.donolaktys.translator.data.AppState
+import ru.donolaktys.translator.model.data.AppState
 
 interface Contract {
 

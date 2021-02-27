@@ -3,8 +3,8 @@ package ru.donolaktys.translator.di
 import dagger.Module
 import dagger.Provides
 import ru.donolaktys.translator.Contract
-import ru.donolaktys.translator.data.DataModel
-import ru.donolaktys.translator.interactor.WordsFragmentInteractor
+import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.translator.view.words.interactor.WordsFragmentInteractor
 import javax.inject.Named
 
 @Module

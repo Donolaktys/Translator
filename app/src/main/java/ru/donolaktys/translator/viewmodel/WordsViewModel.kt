@@ -2,8 +2,8 @@ package ru.donolaktys.translator.viewmodel
 
 import androidx.lifecycle.LiveData
 import io.reactivex.rxjava3.observers.DisposableObserver
-import ru.donolaktys.translator.data.AppState
-import ru.donolaktys.translator.interactor.WordsFragmentInteractor
+import ru.donolaktys.translator.model.data.AppState
+import ru.donolaktys.translator.view.words.interactor.WordsFragmentInteractor
 import javax.inject.Inject
 
 class WordsViewModel @Inject constructor(

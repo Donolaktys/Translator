@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.datasource
+package ru.donolaktys.translator.model.data.api
 
 import okhttp3.Interceptor
 import java.io.IOException

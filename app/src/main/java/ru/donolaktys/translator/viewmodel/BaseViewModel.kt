@@ -3,7 +3,7 @@ package ru.donolaktys.translator.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import ru.donolaktys.translator.data.AppState
+import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.rx.SchedulerProvider
 
 abstract class BaseViewModel<T : AppState>(

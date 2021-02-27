@@ -3,10 +3,10 @@ package ru.donolaktys.translator.di
 import dagger.Module
 import dagger.Provides
 import ru.donolaktys.translator.Contract
-import ru.donolaktys.translator.data.DataModel
-import ru.donolaktys.translator.datasource.RetrofitImplementation
-import ru.donolaktys.translator.datasource.RoomDataBaseImplementation
-import ru.donolaktys.translator.repository.RepositoryImplementation
+import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.translator.model.datasource.RetrofitImplementation
+import ru.donolaktys.translator.model.datasource.RoomDataBaseImplementation
+import ru.donolaktys.translator.model.repository.RepositoryImplementation
 import javax.inject.Named
 import javax.inject.Singleton
 

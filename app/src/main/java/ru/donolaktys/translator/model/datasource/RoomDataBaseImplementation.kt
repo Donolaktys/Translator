@@ -1,8 +1,8 @@
-package ru.donolaktys.translator.datasource
+package ru.donolaktys.translator.model.datasource
 
 import io.reactivex.rxjava3.core.Observable
 import ru.donolaktys.translator.Contract
-import ru.donolaktys.translator.data.DataModel
+import ru.donolaktys.translator.model.data.DataModel
 
 class RoomDataBaseImplementation : Contract.DataSource<List<DataModel>> {
 

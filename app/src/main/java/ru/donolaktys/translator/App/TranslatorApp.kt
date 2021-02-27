@@ -1,6 +1,8 @@
-package ru.donolaktys.translator.di
+package ru.donolaktys.translator.App
 
 import android.app.Application
+import ru.donolaktys.translator.di.AppComponent
+import ru.donolaktys.translator.di.DaggerAppComponent
 
 class TranslatorApp : Application() {
 
@@ -14,8 +16,7 @@ class TranslatorApp : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        _appComponent = DaggerAppComponent
-            .builder()
+        _appComponent = DaggerAppComponent.builder()
             .application(this)
             .build()
     }

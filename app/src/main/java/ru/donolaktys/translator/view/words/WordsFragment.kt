@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.view.main
+package ru.donolaktys.translator.view.words
 
 import android.content.Context
 import android.os.Bundle
@@ -10,12 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.donolaktys.translator.R
-import ru.donolaktys.translator.data.AppState
-import ru.donolaktys.translator.data.DataModel
+import ru.donolaktys.translator.model.data.AppState
+import ru.donolaktys.translator.model.data.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsBinding
-import ru.donolaktys.translator.di.TranslatorApp
+import ru.donolaktys.translator.App.TranslatorApp
 import ru.donolaktys.translator.view.base.BaseFragment
-import ru.donolaktys.translator.view.main.adapter.WordsFragmentAdapter
+import ru.donolaktys.translator.view.words.adapter.WordsFragmentAdapter
 import ru.donolaktys.translator.viewmodel.WordsViewModel
 import javax.inject.Inject
 

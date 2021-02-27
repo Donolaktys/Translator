@@ -3,7 +3,7 @@ package ru.donolaktys.translator.di
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
-import ru.donolaktys.translator.view.main.WordsFragment
+import ru.donolaktys.translator.view.words.WordsFragment
 import javax.inject.Singleton
 
 @Component(

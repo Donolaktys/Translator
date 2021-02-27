@@ -1,9 +1,9 @@
-package ru.donolaktys.translator.interactor
+package ru.donolaktys.translator.view.words.interactor
 
 import io.reactivex.rxjava3.core.Observable
 import ru.donolaktys.translator.Contract
-import ru.donolaktys.translator.data.AppState
-import ru.donolaktys.translator.data.DataModel
+import ru.donolaktys.translator.model.data.AppState
+import ru.donolaktys.translator.model.data.DataModel
 import ru.donolaktys.translator.di.NAME_LOCAL
 import ru.donolaktys.translator.di.NAME_REMOTE
 import javax.inject.Inject
