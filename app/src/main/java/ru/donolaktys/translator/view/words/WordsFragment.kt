@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.reactivex.rxjava3.core.Single
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.model.data.DataModel
