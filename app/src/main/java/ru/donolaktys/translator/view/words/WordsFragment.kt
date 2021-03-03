@@ -1,59 +1,55 @@
 package ru.donolaktys.translator.view.words
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import io.reactivex.rxjava3.core.Single
+import org.koin.android.viewmodel.ext.android.viewModel
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.model.data.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsBinding
-import ru.donolaktys.translator.App.TranslatorApp
 import ru.donolaktys.translator.view.base.BaseFragment
 import ru.donolaktys.translator.view.words.adapter.WordsFragmentAdapter
 import ru.donolaktys.translator.viewmodel.WordsViewModel
-import javax.inject.Inject
 
 class WordsFragment : BaseFragment<AppState>() {
 
-    @Inject
-    internal lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    override val viewModel: WordsViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(WordsViewModel::class.java)
-    }
+    override lateinit var model: WordsViewModel
 
     private var adapter: WordsFragmentAdapter? = null
     private var binding: FragmentWordsBinding? = null
 
-    override fun onAttach(context: Context) {
-        TranslatorApp.component.inject(this)
-        super.onAttach(context)
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentWordsBinding.inflate(inflater, container, false)
+        initViewModel()
         binding?.searchFab?.setOnClickListener {
             val searchDialogFragment = SearchDialogFragment.newInstance()
             searchDialogFragment.setOnSearchListener(object :
                 SearchDialogFragment.OnSearchListener {
                 override fun onClick(searchWord: String) {
-                    viewModel.getData(searchWord, true)
+                    model.getData(searchWord, true)
                 }
             })
             searchDialogFragment.show(childFragmentManager, BOTTOM_SHEET_FRAGMENT_DIALOG_TAG)
         }
-        viewModel.subscribe().observe(this, observer)
         return binding?.root
+    }
+
+    private fun initViewModel() {
+        if (binding?.wordsFragmentRecyclerview?.adapter != null) {
+            throw IllegalStateException("The ViewModel should be initialised first")
+        }
+        val viewModel: WordsViewModel by viewModel()
+        model = viewModel
+        model.subscribe().observe(this, observer)
     }
 
     override fun renderData(appState: AppState) {
@@ -104,7 +100,7 @@ class WordsFragment : BaseFragment<AppState>() {
         showViewError()
         binding?.errorTextview?.text = error ?: getString(R.string.undefined_error)
         binding?.reloadButton?.setOnClickListener {
-            viewModel.getData("search", true)
+            model.getData("search", true)
         }
     }
 
