@@ -5,21 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.model.data.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsBinding
+import ru.donolaktys.translator.utils.network.isOnline
 import ru.donolaktys.translator.view.base.BaseFragment
-import ru.donolaktys.translator.view.words.adapter.WordsFragmentAdapter
-import ru.donolaktys.translator.viewmodel.WordsViewModel
 
-class WordsFragment : BaseFragment<AppState>() {
+class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>() {
 
     override lateinit var model: WordsViewModel
-
     private var adapter: WordsFragmentAdapter? = null
     private var binding: FragmentWordsBinding? = null
 
@@ -35,7 +32,13 @@ class WordsFragment : BaseFragment<AppState>() {
             searchDialogFragment.setOnSearchListener(object :
                 SearchDialogFragment.OnSearchListener {
                 override fun onClick(searchWord: String) {
-                    model.getData(searchWord, true)
+                    isNetworkAvailable = isOnline(requireContext())
+                    if (isNetworkAvailable) {
+                        model.getData(searchWord, isNetworkAvailable)
+                    } else {
+                        showNoInternetConnectionDialog()
+                    }
+
                 }
             })
             searchDialogFragment.show(childFragmentManager, BOTTOM_SHEET_FRAGMENT_DIALOG_TAG)
@@ -49,7 +52,7 @@ class WordsFragment : BaseFragment<AppState>() {
         }
         val viewModel: WordsViewModel by viewModel()
         model = viewModel
-        model.subscribe().observe(this, observer)
+        model.subscribe().observe(viewLifecycleOwner, observer)
     }
 
     override fun renderData(appState: AppState) {
@@ -87,8 +90,6 @@ class WordsFragment : BaseFragment<AppState>() {
         }
     }
 
-    private val observer = Observer<AppState> { renderData(it) }
-
     private val onListItemClickListener: WordsFragmentAdapter.OnListItemClickListener =
         object : WordsFragmentAdapter.OnListItemClickListener {
             override fun onItemClick(data: DataModel) {
@@ -100,7 +101,13 @@ class WordsFragment : BaseFragment<AppState>() {
         showViewError()
         binding?.errorTextview?.text = error ?: getString(R.string.undefined_error)
         binding?.reloadButton?.setOnClickListener {
-            model.getData("search", true)
+            isNetworkAvailable = isOnline(requireContext())
+            if (isNetworkAvailable) {
+                model.getData("search", isNetworkAvailable)
+            } else {
+                showNoInternetConnectionDialog()
+            }
+
         }
     }
 
@@ -136,6 +143,6 @@ class WordsFragment : BaseFragment<AppState>() {
 
     companion object {
         private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG =
-            "74a54328-5d62-46bf-ab6b-cbf5fgt0-092395"
+            "ru.donolaktys.translator.view.words.BOTTOM_SHEET_FRAGMENT_DIALOG_TAG"
     }
 }

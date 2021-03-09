@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.view.words.adapter
+package ru.donolaktys.translator.view.words
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

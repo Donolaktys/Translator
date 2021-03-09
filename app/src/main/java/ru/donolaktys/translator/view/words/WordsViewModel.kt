@@ -1,9 +1,10 @@
-package ru.donolaktys.translator.viewmodel
+package ru.donolaktys.translator.view.words
 
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.launch
 import ru.donolaktys.translator.model.data.AppState
-import ru.donolaktys.translator.view.words.interactor.WordsFragmentInteractor
+import ru.donolaktys.translator.utils.parseOnlineSearchResults
+import ru.donolaktys.translator.viewmodel.BaseViewModel
 
 class WordsViewModel (
     private val interactor: WordsFragmentInteractor
@@ -22,7 +23,7 @@ class WordsViewModel (
     }
 
     private suspend fun startInteractor(word: String, isOnline: Boolean) {
-        _mutableLiveData.postValue(interactor.getData(word, isOnline))
+        _mutableLiveData.postValue(parseOnlineSearchResults(interactor.getData(word, isOnline)))
     }
 
     override fun handleError(error: Throwable) {
