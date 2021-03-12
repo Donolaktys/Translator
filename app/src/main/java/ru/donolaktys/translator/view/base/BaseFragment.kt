@@ -10,7 +10,7 @@ import ru.donolaktys.translator.viewmodel.BaseViewModel
 
 abstract class BaseFragment <T : AppState> : Fragment() {
 
-    abstract val viewModel : BaseViewModel<T>
+    abstract val model : BaseViewModel<T>
     abstract fun renderData(appState: T)
 
     protected var isNetworkAvailable: Boolean = false

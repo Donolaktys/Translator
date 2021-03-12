@@ -1,45 +1,36 @@
 package ru.donolaktys.translator.viewmodel
 
 import androidx.lifecycle.LiveData
-import io.reactivex.rxjava3.observers.DisposableObserver
+import kotlinx.coroutines.launch
 import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.view.words.interactor.WordsFragmentInteractor
-import javax.inject.Inject
 
-class WordsViewModel @Inject constructor(
+class WordsViewModel (
     private val interactor: WordsFragmentInteractor
     ) : BaseViewModel<AppState>() {
 
-    private var appState: AppState? = null
+    private val liveDataToObserve: LiveData<AppState> = _mutableLiveData
 
     override fun getData(word: String, isOnline: Boolean) {
-        compositeDisposable.add(
-            interactor.getData(word, isOnline)
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .doOnSubscribe { liveDataToObserve.value = AppState.Loading(null) }
-                .subscribeWith(getObserver())
-        )
+        _mutableLiveData.value = AppState.Loading(null)
+        cancelJob()
+        viewModelCoroutineScope.launch { startInteractor(word, isOnline) }
     }
 
     fun subscribe(): LiveData<AppState> {
         return liveDataToObserve
     }
 
-    private fun getObserver(): DisposableObserver<AppState> {
-        return object : DisposableObserver<AppState>() {
+    private suspend fun startInteractor(word: String, isOnline: Boolean) {
+        _mutableLiveData.postValue(interactor.getData(word, isOnline))
+    }
 
-            override fun onNext(state: AppState) {
-                appState = state
-                liveDataToObserve.value = state
-            }
+    override fun handleError(error: Throwable) {
+        _mutableLiveData.postValue(AppState.Error(error))
+    }
 
-            override fun onError(e: Throwable) {
-                liveDataToObserve.value = AppState.Error(e)
-            }
-
-            override fun onComplete() {
-            }
-        }
+    override fun onCleared() {
+        _mutableLiveData.value = AppState.Success(null)
+        super.onCleared()
     }
 }
