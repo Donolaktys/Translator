@@ -3,6 +3,7 @@ package ru.donolaktys.translator.view.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ru.donolaktys.translator.R
+import ru.donolaktys.translator.view.words.WordsFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

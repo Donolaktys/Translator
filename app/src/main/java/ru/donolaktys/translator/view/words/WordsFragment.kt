@@ -1,35 +1,41 @@
-package ru.donolaktys.translator.view.main
+package ru.donolaktys.translator.view.words
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.donolaktys.translator.Contract
+import io.reactivex.rxjava3.core.Single
 import ru.donolaktys.translator.R
-import ru.donolaktys.translator.data.AppState
-import ru.donolaktys.translator.data.DataModel
+import ru.donolaktys.translator.model.data.AppState
+import ru.donolaktys.translator.model.data.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsBinding
-import ru.donolaktys.translator.presenter.WordsFragmentPresenter
+import ru.donolaktys.translator.App.TranslatorApp
 import ru.donolaktys.translator.view.base.BaseFragment
-import ru.donolaktys.translator.view.main.adapter.WordsFragmentAdapter
+import ru.donolaktys.translator.view.words.adapter.WordsFragmentAdapter
+import ru.donolaktys.translator.viewmodel.WordsViewModel
+import javax.inject.Inject
 
 class WordsFragment : BaseFragment<AppState>() {
+
+    @Inject
+    internal lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    override val viewModel: WordsViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory).get(WordsViewModel::class.java)
+    }
+
     private var adapter: WordsFragmentAdapter? = null
     private var binding: FragmentWordsBinding? = null
 
-    private val onListItemClickListener: WordsFragmentAdapter.OnListItemClickListener =
-        object : WordsFragmentAdapter.OnListItemClickListener {
-            override fun onItemClick(data: DataModel) {
-                Toast.makeText(requireContext(), data.text, Toast.LENGTH_SHORT).show()
-            }
-        }
-
-    override fun createPresenter(): Contract.Presenter<AppState, Contract.View> {
-        return WordsFragmentPresenter()
+    override fun onAttach(context: Context) {
+        TranslatorApp.component.inject(this)
+        super.onAttach(context)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,11 +47,12 @@ class WordsFragment : BaseFragment<AppState>() {
             searchDialogFragment.setOnSearchListener(object :
                 SearchDialogFragment.OnSearchListener {
                 override fun onClick(searchWord: String) {
-                    presenter.getData(searchWord, true)
+                    viewModel.getData(searchWord, true)
                 }
             })
             searchDialogFragment.show(childFragmentManager, BOTTOM_SHEET_FRAGMENT_DIALOG_TAG)
         }
+        viewModel.subscribe().observe(this, observer)
         return binding?.root
     }
 
@@ -84,11 +91,20 @@ class WordsFragment : BaseFragment<AppState>() {
         }
     }
 
+    private val observer = Observer<AppState> { renderData(it) }
+
+    private val onListItemClickListener: WordsFragmentAdapter.OnListItemClickListener =
+        object : WordsFragmentAdapter.OnListItemClickListener {
+            override fun onItemClick(data: DataModel) {
+                Toast.makeText(requireContext(), data.text, Toast.LENGTH_SHORT).show()
+            }
+        }
+
     private fun showErrorScreen(error: String?) {
         showViewError()
         binding?.errorTextview?.text = error ?: getString(R.string.undefined_error)
         binding?.reloadButton?.setOnClickListener {
-            presenter.getData("hi", true)
+            viewModel.getData("search", true)
         }
     }
 
@@ -116,12 +132,8 @@ class WordsFragment : BaseFragment<AppState>() {
         }
     }
 
-    override fun onDestroyView() {
-        binding = null
-        super.onDestroyView()
-    }
-
     override fun onDestroy() {
+        binding = null
         adapter = null
         super.onDestroy()
     }

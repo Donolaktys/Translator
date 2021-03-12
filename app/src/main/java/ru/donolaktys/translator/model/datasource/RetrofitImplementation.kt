@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.datasource
+package ru.donolaktys.translator.model.datasource
 
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
@@ -10,7 +10,9 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.donolaktys.translator.Contract
-import ru.donolaktys.translator.data.DataModel
+import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.translator.model.data.api.ApiService
+import ru.donolaktys.translator.model.data.api.BaseInterceptor
 
 class RetrofitImplementation : Contract.DataSource<List<DataModel>> {
 

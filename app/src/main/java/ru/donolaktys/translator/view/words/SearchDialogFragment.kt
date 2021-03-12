@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.view.main
+package ru.donolaktys.translator.view.words
 
 import android.os.Bundle
 import android.text.Editable
