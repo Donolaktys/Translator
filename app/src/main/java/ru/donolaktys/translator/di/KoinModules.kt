@@ -1,7 +1,9 @@
 package ru.donolaktys.translator.di
 
 import androidx.room.Room
+import com.github.terrakok.modo.Modo
 import org.koin.dsl.module
+import ru.donolaktys.translator.App.TranslatorApp
 import ru.donolaktys.translator.model.data.DataModel
 import ru.donolaktys.translator.model.data.room.HistoryDatabase
 import ru.donolaktys.translator.model.datasource.RetrofitImplementation
@@ -10,9 +12,11 @@ import ru.donolaktys.translator.model.repository.Repository
 import ru.donolaktys.translator.model.repository.RepositoryImplementation
 import ru.donolaktys.translator.model.repository.RepositoryImplementationLocal
 import ru.donolaktys.translator.model.repository.RepositoryLocal
+import ru.donolaktys.translator.view.description.DescriptionFragment
 import ru.donolaktys.translator.view.history.HistoryFragmentInteractor
 import ru.donolaktys.translator.view.words.WordsFragmentInteractor
 import ru.donolaktys.translator.view.history.HistoryViewModel
+import ru.donolaktys.translator.view.main.MainActivity
 import ru.donolaktys.translator.view.words.WordsViewModel
 
 
@@ -23,15 +27,15 @@ val application = module {
     single<RepositoryLocal<List<DataModel>>> {
         RepositoryImplementationLocal(RoomDataBaseImplementation(get()))
     }
-//    single<ImageLoader<ImageView>> { GlideImageLoader() }
+    single { TranslatorApp.instance.modo }
 }
 
 val wordScreen = module {
-    factory { WordsViewModel(get()) }
+    factory { WordsViewModel(get(), get()) }
     factory { WordsFragmentInteractor(get(), get()) }
 }
 
 val historyScreen = module {
-    factory { HistoryViewModel(get()) }
+    factory { HistoryViewModel(get(), get()) }
     factory { HistoryFragmentInteractor(get(), get()) }
 }

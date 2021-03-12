@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.model.data.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsBinding
+import ru.donolaktys.translator.utils.BackButtonListener
 import ru.donolaktys.translator.utils.network.isOnline
 import ru.donolaktys.translator.view.base.BaseFragment
+import ru.donolaktys.translator.view.description.DescriptionFragment
 
-class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>() {
+class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(), BackButtonListener {
 
     override lateinit var model: WordsViewModel
     private var adapter: WordsFragmentAdapter? = null
@@ -52,7 +54,7 @@ class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>() {
         }
         val viewModel: WordsViewModel by viewModel()
         model = viewModel
-        model.subscribe().observe(viewLifecycleOwner, observer)
+        model.subscribe().observe(viewLifecycleOwner, Observer<AppState> { renderData(it) })
     }
 
     override fun renderData(appState: AppState) {
@@ -93,7 +95,7 @@ class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>() {
     private val onListItemClickListener: WordsFragmentAdapter.OnListItemClickListener =
         object : WordsFragmentAdapter.OnListItemClickListener {
             override fun onItemClick(data: DataModel) {
-                Toast.makeText(requireContext(), data.text, Toast.LENGTH_SHORT).show()
+                model.openDescriptionScreen(data)
             }
         }
 
@@ -107,7 +109,6 @@ class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>() {
             } else {
                 showNoInternetConnectionDialog()
             }
-
         }
     }
 
@@ -144,5 +145,10 @@ class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>() {
     companion object {
         private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG =
             "ru.donolaktys.translator.view.words.BOTTOM_SHEET_FRAGMENT_DIALOG_TAG"
+    }
+
+    override fun backPressed(): Boolean {
+        model.backClick()
+        return true
     }
 }
