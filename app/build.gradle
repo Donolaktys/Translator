@@ -66,6 +66,8 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.2.0-alpha01'
     kapt 'androidx.room:room-compiler:2.2.0-alpha01'
     implementation 'androidx.room:room-ktx:2.2.0-alpha01'
+    //Modo
+    implementation 'com.github.terrakok:modo:0.5'
     //Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

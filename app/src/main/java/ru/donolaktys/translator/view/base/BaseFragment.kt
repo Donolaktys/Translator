@@ -2,7 +2,6 @@ package ru.donolaktys.translator.view.base
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.utils.network.isOnline
@@ -45,8 +44,6 @@ abstract class BaseFragment <T : AppState, I : Interactor<T>> : Fragment() {
     }
 
     protected abstract fun renderData(appState: T)
-
-    protected val observer = Observer<T> { renderData(it) }
 
     companion object {
         private const val DIALOG_FRAGMENT_TAG = "ru.donolaktys.translator.view.base.DIALOG_FRAGMENT_TAG"

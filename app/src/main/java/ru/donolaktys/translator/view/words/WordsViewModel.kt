@@ -1,13 +1,19 @@
 package ru.donolaktys.translator.view.words
 
 import androidx.lifecycle.LiveData
+import com.github.terrakok.modo.Modo
+import com.github.terrakok.modo.exit
+import com.github.terrakok.modo.forward
 import kotlinx.coroutines.launch
+import ru.donolaktys.translator.Screens
 import ru.donolaktys.translator.model.data.AppState
+import ru.donolaktys.translator.model.data.DataModel
 import ru.donolaktys.translator.utils.parseOnlineSearchResults
 import ru.donolaktys.translator.viewmodel.BaseViewModel
 
 class WordsViewModel (
-    private val interactor: WordsFragmentInteractor
+    private val interactor: WordsFragmentInteractor,
+    private val modo: Modo
     ) : BaseViewModel<AppState>() {
 
     private val liveDataToObserve: LiveData<AppState> = _mutableLiveData
@@ -33,5 +39,12 @@ class WordsViewModel (
     override fun onCleared() {
         _mutableLiveData.value = AppState.Success(null)
         super.onCleared()
+    }
+
+    fun openDescriptionScreen(dataModel: DataModel) {
+        modo.forward(Screens.DescriptionScreen(dataModel, modo))
+    }
+    fun backClick() {
+        modo.exit()
     }
 }

@@ -1,12 +1,19 @@
 package ru.donolaktys.translator.view.history
 
 import androidx.lifecycle.LiveData
+import com.github.terrakok.modo.Modo
+import com.github.terrakok.modo.back
+import com.github.terrakok.modo.backTo
+import com.github.terrakok.modo.exit
 import kotlinx.coroutines.launch
 import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.utils.parseLocalSearchResults
 import ru.donolaktys.translator.viewmodel.BaseViewModel
 
-class HistoryViewModel(private val interactor: HistoryFragmentInteractor) :
+class HistoryViewModel(
+    private val interactor: HistoryFragmentInteractor,
+    private val modo: Modo
+) :
     BaseViewModel<AppState>() {
 
     private val liveDataForViewToObserve: LiveData<AppState> = _mutableLiveData
@@ -30,7 +37,11 @@ class HistoryViewModel(private val interactor: HistoryFragmentInteractor) :
     }
 
     override fun onCleared() {
-        _mutableLiveData.value = AppState.Success(null)//Set View to original state in onStop
+        _mutableLiveData.value = AppState.Success(null)
         super.onCleared()
+    }
+
+    fun backClick() {
+        modo.backTo("SearchScreen")
     }
 }
