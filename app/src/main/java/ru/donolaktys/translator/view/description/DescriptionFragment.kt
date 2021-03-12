@@ -37,11 +37,12 @@ class DescriptionFragment : Fragment(), BackButtonListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding?.descriptionScreenSwipeRefreshLayout?.setOnRefreshListener { startLoadingOrShowError(savedInstanceState) }
-        setData(savedInstanceState)
+        binding?.descriptionScreenSwipeRefreshLayout?.setOnRefreshListener { startLoadingOrShowError() }
+        setData()
     }
 
-    private fun setData(bundle: Bundle?) {
+    private fun setData() {
+        val bundle = arguments
         binding?.descriptionHeader?.text = bundle?.getString(WORD_TAG)
         binding?.descriptionTextview?.text = bundle?.getString(DESCRIPTION_TAG)
         val imageLink = bundle?.getString(URL_TAG)
@@ -50,9 +51,9 @@ class DescriptionFragment : Fragment(), BackButtonListener {
         }
     }
 
-    private fun startLoadingOrShowError(bundle: Bundle?) {
+    private fun startLoadingOrShowError() {
         if (isOnline(requireContext())) {
-            setData(bundle)
+            setData()
         } else {
             AlertDialogFragment.newInstance(
                 getString(R.string.dialog_title_device_is_offline),
