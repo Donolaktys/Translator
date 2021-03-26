@@ -42,7 +42,7 @@ class WordsViewModel (
     }
 
     fun openDescriptionScreen(dataModel: DataModel) {
-        modo.forward(Screens.DescriptionScreen(dataModel, modo))
+        modo.forward(Screens.DescriptionScreen(dataModel))
     }
     fun backClick() {
         modo.exit()

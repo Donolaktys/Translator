@@ -31,14 +31,10 @@ class MainActivity() : AppCompatActivity() {
                 R.id.menu_item_search -> {
                     modo.forward(Screens.WordsScreen())
                     true
-//                    hideFragment(HISTORY_TAG)
-//                    showFragment(R.id.container, SEARCH_TAG, WordsFragment())
                 }
                 R.id.menu_item_history -> {
                     modo.forward(Screens.HistoryScreen())
                     true
-//                    hideFragment(SEARCH_TAG)
-//                    showFragment(R.id.container, HISTORY_TAG, HistoryFragment())
                 }
                 else -> {
                     super.onOptionsItemSelected(item)

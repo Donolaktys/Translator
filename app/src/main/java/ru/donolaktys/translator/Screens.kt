@@ -10,5 +10,5 @@ import ru.donolaktys.translator.view.words.WordsFragment
 object Screens {
     fun WordsScreen() = AppScreen("WordsScreen") { WordsFragment() }
     fun HistoryScreen() = AppScreen("HistoryScreen") { HistoryFragment() }
-    fun DescriptionScreen(data: DataModel, modo: Modo) = AppScreen("DescriptionScreen") { DescriptionFragment.newInstance(data, modo) }
+    fun DescriptionScreen(data: DataModel) = AppScreen("DescriptionScreen") { DescriptionFragment.newInstance(data) }
 }

@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.back
+import org.koin.android.ext.android.inject
 import ru.donolaktys.translator.BuildConfig
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.databinding.FragmentDescriptionBinding
@@ -25,7 +26,7 @@ import ru.donolaktys.translator.utils.ui.AlertDialogFragment
 
 class DescriptionFragment : Fragment(), BackButtonListener {
 
-    lateinit var modo: Modo
+    private val modo: Modo by inject()
     private var binding: FragmentDescriptionBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -115,8 +116,7 @@ class DescriptionFragment : Fragment(), BackButtonListener {
         private const val DESCRIPTION_TAG = APP_ID + ".DESCRIPTION_TAG"
         private const val URL_TAG = APP_ID + ".URL_TAG"
 
-        fun newInstance(data: DataModel, _modo: Modo) = DescriptionFragment().apply {
-            this.modo = _modo
+        fun newInstance(data: DataModel) = DescriptionFragment().apply {
             arguments = Bundle().apply {
                 putString(WORD_TAG, data.text)
                 putString(DESCRIPTION_TAG, data.meanings?.get(0)?.translation?.translation)
