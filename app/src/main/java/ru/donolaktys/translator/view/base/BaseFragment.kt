@@ -7,11 +7,11 @@ import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.utils.network.isOnline
 import ru.donolaktys.translator.utils.ui.AlertDialogFragment
 import ru.donolaktys.translator.viewmodel.BaseViewModel
+import ru.donolaktys.translator.viewmodel.Interactor
 
-abstract class BaseFragment <T : AppState> : Fragment() {
+abstract class BaseFragment <T : AppState, I : Interactor<T>> : Fragment() {
 
     abstract val model : BaseViewModel<T>
-    abstract fun renderData(appState: T)
 
     protected var isNetworkAvailable: Boolean = false
 
@@ -43,7 +43,9 @@ abstract class BaseFragment <T : AppState> : Fragment() {
         return childFragmentManager.findFragmentByTag(DIALOG_FRAGMENT_TAG) == null
     }
 
+    protected abstract fun renderData(appState: T)
+
     companion object {
-        private const val DIALOG_FRAGMENT_TAG = "74a54328-5d62-46bf-ab6b-cbf5d8c79522"
+        private const val DIALOG_FRAGMENT_TAG = "ru.donolaktys.translator.view.base.DIALOG_FRAGMENT_TAG"
     }
 }

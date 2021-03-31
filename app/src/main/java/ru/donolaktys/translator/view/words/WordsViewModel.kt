@@ -1,12 +1,19 @@
-package ru.donolaktys.translator.viewmodel
+package ru.donolaktys.translator.view.words
 
 import androidx.lifecycle.LiveData
+import com.github.terrakok.modo.Modo
+import com.github.terrakok.modo.exit
+import com.github.terrakok.modo.forward
 import kotlinx.coroutines.launch
+import ru.donolaktys.translator.Screens
 import ru.donolaktys.translator.model.data.AppState
-import ru.donolaktys.translator.view.words.interactor.WordsFragmentInteractor
+import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.translator.utils.parseOnlineSearchResults
+import ru.donolaktys.translator.viewmodel.BaseViewModel
 
 class WordsViewModel (
-    private val interactor: WordsFragmentInteractor
+    private val interactor: WordsFragmentInteractor,
+    private val modo: Modo
     ) : BaseViewModel<AppState>() {
 
     private val liveDataToObserve: LiveData<AppState> = _mutableLiveData
@@ -22,7 +29,7 @@ class WordsViewModel (
     }
 
     private suspend fun startInteractor(word: String, isOnline: Boolean) {
-        _mutableLiveData.postValue(interactor.getData(word, isOnline))
+        _mutableLiveData.postValue(parseOnlineSearchResults(interactor.getData(word, isOnline)))
     }
 
     override fun handleError(error: Throwable) {
@@ -32,5 +39,12 @@ class WordsViewModel (
     override fun onCleared() {
         _mutableLiveData.value = AppState.Success(null)
         super.onCleared()
+    }
+
+    fun openDescriptionScreen(dataModel: DataModel) {
+        modo.forward(Screens.DescriptionScreen(dataModel))
+    }
+    fun backClick() {
+        modo.exit()
     }
 }

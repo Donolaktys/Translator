@@ -2,7 +2,9 @@
     <string name="app_name">Translator</string>
     <string name="search_hint">Search</string>
     <string name="delete_description">Delete search item</string>
+    <string name="error_stub">Error</string>
     <string name="error_textview_stub">Error</string>
+    <string name="image_stub">image</string>
     <string name="reload_button">Reload</string>
     <string name="description_search_word">Search word</string>
     <string name="empty_server_response_on_success">Response from server is empty</string>
@@ -13,4 +15,8 @@
     </string>
     <string name="dialog_button_cancel">Cancel</string>
     <string name="dialog_title_stub">Undefined error</string>
+    <string name="title_home">Search</string>
+    <string name="title_history">History</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="dialog_tittle_sorry">Sorry</string>
 </resources>

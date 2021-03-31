@@ -7,7 +7,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Meanings(
-    @Expose @SerializedName("id") val id: String?,
     @Expose @SerializedName("translation") val translation: Translation?,
     @Expose @SerializedName("imageUrl") val imageUrl: String?
 ) : Parcelable
