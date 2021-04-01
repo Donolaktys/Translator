@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.model.data.AppState
-import ru.donolaktys.translator.utils.network.isOnline
-import ru.donolaktys.translator.utils.ui.AlertDialogFragment
+import ru.donolaktys.utils.network.isOnline
+import ru.donolaktys.utils.ui.AlertDialogFragment
 import ru.donolaktys.translator.viewmodel.BaseViewModel
 import ru.donolaktys.translator.viewmodel.Interactor
 

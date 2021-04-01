@@ -10,8 +10,8 @@ import ru.donolaktys.translator.R
 import ru.donolaktys.translator.databinding.FragmentHistoryBinding
 import ru.donolaktys.translator.databinding.LoadingLayoutBinding
 import ru.donolaktys.translator.model.data.AppState
-import ru.donolaktys.translator.utils.BackButtonListener
 import ru.donolaktys.translator.view.base.BaseFragment
+import ru.donolaktys.utils.BackButtonListener
 
 class HistoryFragment : BaseFragment<AppState, HistoryFragmentInteractor>(), BackButtonListener {
 

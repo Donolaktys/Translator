@@ -5,10 +5,10 @@ import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.exit
 import com.github.terrakok.modo.forward
 import kotlinx.coroutines.launch
-import ru.donolaktys.translator.Screens
+import ru.donolaktys.translator.App.Screens
+import ru.donolaktys.translator.App.parseOnlineSearchResults
 import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.model.data.DataModel
-import ru.donolaktys.translator.utils.parseOnlineSearchResults
 import ru.donolaktys.translator.viewmodel.BaseViewModel
 
 class WordsViewModel (

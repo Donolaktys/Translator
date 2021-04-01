@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.utils.ui
+package ru.donolaktys.utils.ui
 
 import android.app.Dialog
 import android.os.Bundle

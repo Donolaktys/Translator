@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.utils
+package ru.donolaktys.utils
 
 interface BackButtonListener {
     fun backPressed(): Boolean

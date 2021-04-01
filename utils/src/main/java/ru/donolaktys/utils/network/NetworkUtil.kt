@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.utils.network
+package ru.donolaktys.utils.network
 
 import android.content.Context
 import android.net.ConnectivityManager

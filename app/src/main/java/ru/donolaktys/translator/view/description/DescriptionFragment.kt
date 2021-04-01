@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.multidex.BuildConfig
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -16,13 +17,12 @@ import com.bumptech.glide.request.target.Target
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.back
 import org.koin.android.ext.android.inject
-import ru.donolaktys.translator.BuildConfig
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.databinding.FragmentDescriptionBinding
 import ru.donolaktys.translator.model.data.DataModel
-import ru.donolaktys.translator.utils.BackButtonListener
-import ru.donolaktys.translator.utils.network.isOnline
-import ru.donolaktys.translator.utils.ui.AlertDialogFragment
+import ru.donolaktys.utils.BackButtonListener
+import ru.donolaktys.utils.network.isOnline
+import ru.donolaktys.utils.ui.AlertDialogFragment
 
 class DescriptionFragment : Fragment(), BackButtonListener {
 

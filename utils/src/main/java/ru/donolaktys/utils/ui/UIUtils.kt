@@ -1,8 +1,8 @@
-package ru.donolaktys.translator.utils.ui
+package ru.donolaktys.utils.ui
 
-import android.content.Context
 import androidx.appcompat.app.AlertDialog
-import ru.donolaktys.translator.R
+import android.content.Context
+import ru.donolaktys.utils.R
 
 fun getStubAlertDialog(context: Context): AlertDialog {
     return getAlertDialog(context, null, null)

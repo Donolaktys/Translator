@@ -3,11 +3,9 @@ package ru.donolaktys.translator.view.history
 import androidx.lifecycle.LiveData
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.back
-import com.github.terrakok.modo.backTo
-import com.github.terrakok.modo.exit
 import kotlinx.coroutines.launch
+import ru.donolaktys.translator.App.parseLocalSearchResults
 import ru.donolaktys.translator.model.data.AppState
-import ru.donolaktys.translator.utils.parseLocalSearchResults
 import ru.donolaktys.translator.viewmodel.BaseViewModel
 
 class HistoryViewModel(

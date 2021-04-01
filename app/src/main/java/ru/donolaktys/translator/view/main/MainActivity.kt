@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.modo.*
 import ru.donolaktys.translator.App.TranslatorApp
 import ru.donolaktys.translator.R
-import ru.donolaktys.translator.Screens
-import ru.donolaktys.translator.utils.BackButtonListener
+import ru.donolaktys.translator.App.Screens
+import ru.donolaktys.utils.BackButtonListener
 
 class MainActivity() : AppCompatActivity() {
 

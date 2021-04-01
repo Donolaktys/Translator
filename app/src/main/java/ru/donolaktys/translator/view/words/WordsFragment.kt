@@ -11,12 +11,11 @@ import ru.donolaktys.translator.R
 import ru.donolaktys.translator.model.data.AppState
 import ru.donolaktys.translator.model.data.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsBinding
-import ru.donolaktys.translator.utils.BackButtonListener
-import ru.donolaktys.translator.utils.network.isOnline
 import ru.donolaktys.translator.view.base.BaseFragment
-import ru.donolaktys.translator.view.description.DescriptionFragment
+import ru.donolaktys.utils.BackButtonListener
 
-class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(), BackButtonListener {
+class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(),
+    BackButtonListener {
 
     override lateinit var model: WordsViewModel
     private var adapter: WordsFragmentAdapter? = null
@@ -34,9 +33,9 @@ class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(), BackBut
             searchDialogFragment.setOnSearchListener(object :
                 SearchDialogFragment.OnSearchListener {
                 override fun onClick(searchWord: String) {
-                    isNetworkAvailable = isOnline(requireContext())
+                    isNetworkAvailable = ru.donolaktys.utils.network.isOnline(requireContext())
                     if (isNetworkAvailable) {
-                        model.getData(searchWord, isNetworkAvailable)
+                        model.getData(searchWord, true)
                     } else {
                         showNoInternetConnectionDialog()
                     }
@@ -103,7 +102,7 @@ class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(), BackBut
         showViewError()
         binding?.errorTextview?.text = error ?: getString(R.string.undefined_error)
         binding?.reloadButton?.setOnClickListener {
-            isNetworkAvailable = isOnline(requireContext())
+            isNetworkAvailable = ru.donolaktys.utils.network.isOnline(requireContext())
             if (isNetworkAvailable) {
                 model.getData("search", isNetworkAvailable)
             } else {

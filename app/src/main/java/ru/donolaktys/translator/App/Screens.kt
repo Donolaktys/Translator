@@ -1,7 +1,6 @@
-package ru.donolaktys.translator
+package ru.donolaktys.translator.App
 
 import com.github.terrakok.modo.AppScreen
-import com.github.terrakok.modo.Modo
 import ru.donolaktys.translator.model.data.DataModel
 import ru.donolaktys.translator.view.description.DescriptionFragment
 import ru.donolaktys.translator.view.history.HistoryFragment
