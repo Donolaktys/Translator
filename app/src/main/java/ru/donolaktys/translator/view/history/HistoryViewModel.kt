@@ -5,7 +5,7 @@ import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.back
 import kotlinx.coroutines.launch
 import ru.donolaktys.translator.App.parseLocalSearchResults
-import ru.donolaktys.translator.model.data.AppState
+import ru.donolaktys.model.AppState
 import ru.donolaktys.translator.viewmodel.BaseViewModel
 
 class HistoryViewModel(

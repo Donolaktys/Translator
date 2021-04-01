@@ -8,8 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.android.viewmodel.ext.android.viewModel
 import ru.donolaktys.translator.R
-import ru.donolaktys.translator.model.data.AppState
-import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.model.AppState
+import ru.donolaktys.model.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsBinding
 import ru.donolaktys.translator.view.base.BaseFragment
 import ru.donolaktys.utils.BackButtonListener
@@ -77,7 +77,7 @@ class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(),
                     if (appState.progress != null) {
                         it.progressBarHorizontal.visibility = View.VISIBLE
                         it.progressBarRound.visibility = View.GONE
-                        it.progressBarHorizontal.progress = appState.progress
+                        it.progressBarHorizontal.progress = appState.progress ?: 0
                     } else {
                         it.progressBarHorizontal.visibility = View.GONE
                         it.progressBarRound.visibility = View.VISIBLE

@@ -3,7 +3,7 @@ package ru.donolaktys.translator.model.data.api
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.model.DataModel
 
 interface ApiService {
 

@@ -2,8 +2,8 @@ package ru.donolaktys.translator.model.datasource
 
 import ru.donolaktys.translator.App.convertDataModelSuccessToEntity
 import ru.donolaktys.translator.App.mapHistoryEntityToSearchResult
-import ru.donolaktys.translator.model.data.AppState
-import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.model.AppState
+import ru.donolaktys.model.DataModel
 import ru.donolaktys.translator.model.data.room.dao.HistoryDao
 
 class RoomDataBaseImplementation(private val dao: HistoryDao) : DataSourceLocal<List<DataModel>> {

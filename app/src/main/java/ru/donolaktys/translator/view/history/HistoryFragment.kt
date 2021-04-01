@@ -9,7 +9,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.databinding.FragmentHistoryBinding
 import ru.donolaktys.translator.databinding.LoadingLayoutBinding
-import ru.donolaktys.translator.model.data.AppState
+import ru.donolaktys.model.AppState
 import ru.donolaktys.translator.view.base.BaseFragment
 import ru.donolaktys.utils.BackButtonListener
 
@@ -17,7 +17,7 @@ class HistoryFragment : BaseFragment<AppState, HistoryFragmentInteractor>(), Bac
 
     private var binding: FragmentHistoryBinding? = null
     private val adapter: HistoryFragmentAdapter by lazy { HistoryFragmentAdapter() }
-    private val bindLoad : LoadingLayoutBinding by lazy { LoadingLayoutBinding.inflate(layoutInflater) }
+    private val bindLoad: LoadingLayoutBinding by lazy { LoadingLayoutBinding.inflate(layoutInflater) }
     override lateinit var model: HistoryViewModel
 
     override fun onCreateView(
@@ -38,7 +38,8 @@ class HistoryFragment : BaseFragment<AppState, HistoryFragmentInteractor>(), Bac
         }
         val viewModel: HistoryViewModel by viewModel()
         model = viewModel
-        model.subscribe().observe(viewLifecycleOwner, Observer<AppState> { renderData(it) })
+        model.subscribe()
+            .observe(viewLifecycleOwner, Observer<ru.donolaktys.model.AppState> { renderData(it) })
     }
 
     private fun initViews() {
@@ -65,32 +66,31 @@ class HistoryFragment : BaseFragment<AppState, HistoryFragmentInteractor>(), Bac
                 if (appState.progress != null) {
                     bindLoad.progressBarHorizontal.visibility = View.VISIBLE
                     bindLoad.progressBarRound.visibility = View.GONE
-                    bindLoad.progressBarHorizontal.progress = appState.progress
-                }
-            else {
+                    bindLoad.progressBarHorizontal.progress = appState.progress ?: 0
+                } else {
                     bindLoad.progressBarHorizontal.visibility = View.GONE
                     bindLoad.progressBarRound.visibility = View.VISIBLE
+                }
+            }
+            is AppState.Error -> {
+                showViewWorking()
+                showAlertDialog(getString(R.string.error_stub), appState.error.message)
             }
         }
-        is AppState.Error -> {
-            showViewWorking()
-            showAlertDialog(getString(R.string.error_stub), appState.error.message)
-        }
     }
-}
 
-private fun showViewWorking() {
-    bindLoad.loadingFrameLayout.visibility = View.GONE
-}
+    private fun showViewWorking() {
+        bindLoad.loadingFrameLayout.visibility = View.GONE
+    }
 
-private fun showViewLoading() {
-    bindLoad.loadingFrameLayout.visibility = View.VISIBLE
-}
+    private fun showViewLoading() {
+        bindLoad.loadingFrameLayout.visibility = View.VISIBLE
+    }
 
-override fun onDestroy() {
-    binding = null
-    super.onDestroy()
-}
+    override fun onDestroy() {
+        binding = null
+        super.onDestroy()
+    }
 
     override fun backPressed(): Boolean {
         model.backClick()

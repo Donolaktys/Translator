@@ -19,7 +19,7 @@ import com.github.terrakok.modo.back
 import org.koin.android.ext.android.inject
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.databinding.FragmentDescriptionBinding
-import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.model.DataModel
 import ru.donolaktys.utils.BackButtonListener
 import ru.donolaktys.utils.network.isOnline
 import ru.donolaktys.utils.ui.AlertDialogFragment

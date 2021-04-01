@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.model.data
+package ru.donolaktys.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.Expose

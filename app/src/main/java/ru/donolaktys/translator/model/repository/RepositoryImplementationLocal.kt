@@ -1,7 +1,7 @@
 package ru.donolaktys.translator.model.repository
 
-import ru.donolaktys.translator.model.data.AppState
-import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.model.AppState
+import ru.donolaktys.model.DataModel
 import ru.donolaktys.translator.model.datasource.DataSourceLocal
 
 class RepositoryImplementationLocal(private val dataSource: DataSourceLocal<List<DataModel>>) :

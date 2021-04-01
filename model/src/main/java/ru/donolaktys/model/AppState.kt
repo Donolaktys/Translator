@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.model.data
+package ru.donolaktys.model
 
 sealed class AppState {
     data class Success(val data: List<DataModel>?) : AppState()

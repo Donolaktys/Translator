@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.donolaktys.translator.databinding.FragmentHistoryRecyclerviewItemBinding
-import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.model.DataModel
 
 class HistoryFragmentAdapter : RecyclerView.Adapter<HistoryFragmentAdapter.RecyclerItemViewHolder>() {
 

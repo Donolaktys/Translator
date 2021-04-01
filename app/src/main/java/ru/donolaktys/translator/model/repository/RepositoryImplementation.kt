@@ -1,6 +1,6 @@
 package ru.donolaktys.translator.model.repository
 
-import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.model.DataModel
 import ru.donolaktys.translator.model.datasource.DataSource
 
 class RepositoryImplementation(private val dataSource: DataSource<List<DataModel>>) :

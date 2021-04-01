@@ -7,7 +7,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.model.DataModel
 import ru.donolaktys.translator.model.data.api.ApiService
 import ru.donolaktys.translator.model.data.api.BaseInterceptor
 

@@ -3,7 +3,7 @@ package ru.donolaktys.translator.view.words
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.donolaktys.translator.model.data.DataModel
+import ru.donolaktys.model.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsRecyclerviewItemBinding
 
 class WordsFragmentAdapter (private var onListItemClickListener: OnListItemClickListener, private var data: List<DataModel>) :

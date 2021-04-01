@@ -1,8 +1,8 @@
 package ru.donolaktys.translator.App
 
-import ru.donolaktys.translator.model.data.AppState
-import ru.donolaktys.translator.model.data.DataModel
-import ru.donolaktys.translator.model.data.Meanings
+import ru.donolaktys.model.AppState
+import ru.donolaktys.model.DataModel
+import ru.donolaktys.model.Meanings
 import ru.donolaktys.translator.model.data.room.RoomHistoryWord
 
 fun parseOnlineSearchResults(state: AppState): AppState {
@@ -48,18 +48,21 @@ private fun getSuccessResultData(
 private fun parseOnlineResult(dataModel: DataModel, newDataModels: ArrayList<DataModel>) {
     if (!dataModel.text.isNullOrBlank() && !dataModel.meanings.isNullOrEmpty()) {
         val newMeanings = arrayListOf<Meanings>()
-        for (meaning in dataModel.meanings) {
-            if (meaning.translation != null && !meaning.translation.translation.isNullOrBlank()) {
-                newMeanings.add(Meanings(meaning.translation, meaning.imageUrl))
+        dataModel.meanings?.let {
+            for (meaning in it) {
+                if (meaning.translation != null && !meaning.translation?.translation.isNullOrBlank()) {
+                    newMeanings.add(Meanings(meaning.translation, meaning.imageUrl))
+                }
             }
         }
+
         if (newMeanings.isNotEmpty()) {
             newDataModels.add(DataModel(dataModel.text, newMeanings))
         }
     }
 }
 
-fun mapHistoryEntityToSearchResult(list: List<RoomHistoryWord>): List<DataModel> {
+fun mapHistoryEntityToSearchResult(list: List<RoomHistoryWord>): List<ru.donolaktys.model.DataModel> {
     val searchResult = ArrayList<DataModel>()
     if (!list.isNullOrEmpty()) {
         for (entity in list) {

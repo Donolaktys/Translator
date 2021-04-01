@@ -2,7 +2,7 @@ package ru.donolaktys.translator.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.donolaktys.translator.model.data.AppState
+import ru.donolaktys.model.AppState
 import kotlinx.coroutines.*
 
 abstract class BaseViewModel<T : AppState>(
