@@ -6,7 +6,7 @@ import com.github.terrakok.modo.back
 import kotlinx.coroutines.launch
 import ru.donolaktys.translator.App.parseLocalSearchResults
 import ru.donolaktys.model.AppState
-import ru.donolaktys.translator.viewmodel.BaseViewModel
+import ru.donolaktys.core.viewmodel.BaseViewModel
 
 class HistoryViewModel(
     private val interactor: HistoryFragmentInteractor,

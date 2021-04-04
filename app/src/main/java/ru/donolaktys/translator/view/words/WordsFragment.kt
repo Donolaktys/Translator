@@ -11,7 +11,7 @@ import ru.donolaktys.translator.R
 import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel
 import ru.donolaktys.translator.databinding.FragmentWordsBinding
-import ru.donolaktys.translator.view.base.BaseFragment
+import ru.donolaktys.core.base.BaseFragment
 import ru.donolaktys.utils.BackButtonListener
 
 class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(),
@@ -94,7 +94,11 @@ class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(),
     private val onListItemClickListener: WordsFragmentAdapter.OnListItemClickListener =
         object : WordsFragmentAdapter.OnListItemClickListener {
             override fun onItemClick(data: DataModel) {
-                model.openDescriptionScreen(data)
+                    model.openDescriptionScreen(
+                        data.text ?: "",
+                        data.meanings?.get(0)?.translation?.translation ?: "",
+                        data.meanings?.get(0)?.imageUrl ?: ""
+                    )
             }
         }
 

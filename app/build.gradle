@@ -42,6 +42,7 @@ dependencies {
     implementation project(Modules.utils)
     implementation project(Modules.model)
     implementation project(Modules.repo)
+    implementation project(Modules.core)
     //Kotlin
     implementation Kotlin.stdlib
     implementation Kotlin.core

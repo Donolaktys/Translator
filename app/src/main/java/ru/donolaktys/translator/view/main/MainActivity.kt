@@ -5,20 +5,21 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.modo.*
-import ru.donolaktys.translator.App.TranslatorApp
+import org.koin.android.ext.android.inject
 import ru.donolaktys.translator.R
-import ru.donolaktys.translator.App.Screens
+import ru.donolaktys.core.INavigation
+import ru.donolaktys.translator.Navigate
 import ru.donolaktys.utils.BackButtonListener
 
 class MainActivity() : AppCompatActivity() {
 
-    private val modo: Modo = TranslatorApp.instance.modo
+    private val navigate: INavigation<Modo> by inject()
     private val modoRender by lazy { ModoRender(this, R.id.container) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        modo.init(savedInstanceState, modoRender, Screens.WordsScreen())
+        navigate.getRouter().init(savedInstanceState, modoRender, Navigate.Screens.WordsScreen())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -29,11 +30,11 @@ class MainActivity() : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
             return when (item.itemId) {
                 R.id.menu_item_search -> {
-                    modo.forward(Screens.WordsScreen())
+                    navigate.toWordsScreen()
                     true
                 }
                 R.id.menu_item_history -> {
-                    modo.forward(Screens.HistoryScreen())
+                    navigate.toHistoryScreen()
                     true
                 }
                 else -> {
@@ -44,12 +45,12 @@ class MainActivity() : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        modo.render = modoRender
+        navigate.getRouter().render = modoRender
     }
 
     override fun onPause() {
         super.onPause()
-        modo.render = null
+        navigate.getRouter().render = null
     }
 
     override fun onBackPressed() {
@@ -58,6 +59,6 @@ class MainActivity() : AppCompatActivity() {
                 return
             }
         }
-        modo.exit()
+        navigate.getRouter().exit()
     }
 }

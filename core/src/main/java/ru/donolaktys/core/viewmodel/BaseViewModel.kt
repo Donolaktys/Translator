@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.viewmodel
+package ru.donolaktys.core.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

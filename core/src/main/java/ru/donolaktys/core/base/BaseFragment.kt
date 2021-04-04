@@ -1,13 +1,13 @@
-package ru.donolaktys.translator.view.base
+package ru.donolaktys.core.base
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import ru.donolaktys.translator.R
+import ru.donolaktys.core.R
 import ru.donolaktys.model.AppState
 import ru.donolaktys.utils.network.isOnline
 import ru.donolaktys.utils.ui.AlertDialogFragment
-import ru.donolaktys.translator.viewmodel.BaseViewModel
-import ru.donolaktys.translator.viewmodel.Interactor
+import ru.donolaktys.core.viewmodel.BaseViewModel
+import ru.donolaktys.core.viewmodel.Interactor
 
 abstract class BaseFragment <T : AppState, I : Interactor<T>> : Fragment() {
 
@@ -46,6 +46,6 @@ abstract class BaseFragment <T : AppState, I : Interactor<T>> : Fragment() {
     protected abstract fun renderData(appState: T)
 
     companion object {
-        private const val DIALOG_FRAGMENT_TAG = "ru.donolaktys.translator.view.base.DIALOG_FRAGMENT_TAG"
+        private const val DIALOG_FRAGMENT_TAG = "ru.donolaktys.core.base.DIALOG_FRAGMENT_TAG"
     }
 }

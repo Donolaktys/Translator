@@ -2,9 +2,9 @@ package ru.donolaktys.translator.view.words
 
 import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel
-import ru.donolaktys.translator.model.repository.Repository
-import ru.donolaktys.translator.model.repository.RepositoryLocal
-import ru.donolaktys.translator.viewmodel.Interactor
+import ru.donolaktys.core.viewmodel.Interactor
+import ru.donolaktys.repo.repository.Repository
+import ru.donolaktys.repo.repository.RepositoryLocal
 
 class WordsFragmentInteractor (
     private val remoteRepository: Repository<List<DataModel>>,

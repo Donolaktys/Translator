@@ -3,7 +3,6 @@ package ru.donolaktys.translator.App
 import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel
 import ru.donolaktys.model.Meanings
-import ru.donolaktys.repo.room.RoomHistoryWord
 
 fun parseOnlineSearchResults(state: AppState): AppState {
     return AppState.Success(mapResult(state, true))
@@ -61,31 +60,6 @@ private fun parseOnlineResult(dataModel: DataModel, newDataModels: ArrayList<Dat
         }
     }
 }
-
-fun mapHistoryEntityToSearchResult(list: List<RoomHistoryWord>): List<ru.donolaktys.model.DataModel> {
-    val searchResult = ArrayList<DataModel>()
-    if (!list.isNullOrEmpty()) {
-        for (entity in list) {
-            searchResult.add(DataModel(entity.name, null))
-        }
-    }
-    return searchResult
-}
-
-fun convertDataModelSuccessToEntity(appState: AppState): RoomHistoryWord? {
-    return when (appState) {
-        is AppState.Success -> {
-            val searchResult = appState.data
-            if (searchResult.isNullOrEmpty() || searchResult[0].text.isNullOrEmpty()) {
-                null
-            } else {
-                RoomHistoryWord(searchResult[0].text!!, null)
-            }
-        }
-        else -> null
-    }
-}
-
 
 fun convertMeaningsToString(meanings: List<Meanings>): String {
     var meaningsSeparatedByComma = String()

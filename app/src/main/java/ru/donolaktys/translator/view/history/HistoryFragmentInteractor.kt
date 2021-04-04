@@ -2,9 +2,9 @@ package ru.donolaktys.translator.view.history
 
 import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel
-import ru.donolaktys.translator.model.repository.Repository
-import ru.donolaktys.translator.model.repository.RepositoryLocal
-import ru.donolaktys.translator.viewmodel.Interactor
+import ru.donolaktys.repo.repository.Repository
+import ru.donolaktys.repo.repository.RepositoryLocal
+import ru.donolaktys.core.viewmodel.Interactor
 
 class HistoryFragmentInteractor(
     private val remoteRepository: Repository<List<DataModel>>,
