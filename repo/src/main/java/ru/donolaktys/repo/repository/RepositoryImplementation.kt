@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.model.repository
+package ru.donolaktys.repo.repository
 
 import ru.donolaktys.model.DataModel
 import ru.donolaktys.repo.datasource.DataSource

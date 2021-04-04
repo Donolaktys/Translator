@@ -4,9 +4,9 @@ import androidx.room.Room
 import org.koin.dsl.module
 import ru.donolaktys.translator.App.TranslatorApp
 import ru.donolaktys.model.DataModel
-import ru.donolaktys.translator.model.data.room.HistoryDatabase
-import ru.donolaktys.translator.model.datasource.RetrofitImplementation
-import ru.donolaktys.translator.model.datasource.RoomDataBaseImplementation
+import ru.donolaktys.repo.room.HistoryDatabase
+import ru.donolaktys.repo.datasource.RetrofitImplementation
+import ru.donolaktys.repo.datasource.RoomDataBaseImplementation
 import ru.donolaktys.translator.model.repository.Repository
 import ru.donolaktys.translator.model.repository.RepositoryImplementation
 import ru.donolaktys.translator.model.repository.RepositoryImplementationLocal

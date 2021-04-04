@@ -1,7 +1,7 @@
-package ru.donolaktys.translator.model.data.room.dao
+package ru.donolaktys.repo.room.dao
 
 import androidx.room.*
-import ru.donolaktys.translator.model.data.room.RoomHistoryWord
+import ru.donolaktys.repo.room.RoomHistoryWord
 
 @Dao
 interface HistoryDao {

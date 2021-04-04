@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.model.data.room
+package ru.donolaktys.repo.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

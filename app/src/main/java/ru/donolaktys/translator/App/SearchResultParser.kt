@@ -3,7 +3,7 @@ package ru.donolaktys.translator.App
 import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel
 import ru.donolaktys.model.Meanings
-import ru.donolaktys.translator.model.data.room.RoomHistoryWord
+import ru.donolaktys.repo.room.RoomHistoryWord
 
 fun parseOnlineSearchResults(state: AppState): AppState {
     return AppState.Success(mapResult(state, true))

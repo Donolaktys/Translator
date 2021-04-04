@@ -1,3 +1,4 @@
+include ':repo'
 include ':model'
 include ':utils'
 include ':app'

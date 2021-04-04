@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.model.data.api
+package ru.donolaktys.repo.api
 
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET

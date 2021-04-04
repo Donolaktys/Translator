@@ -1,7 +1,7 @@
-package ru.donolaktys.translator.model.data.room
+package ru.donolaktys.repo.room
 
 import androidx.room.RoomDatabase
-import ru.donolaktys.translator.model.data.room.dao.HistoryDao
+import ru.donolaktys.repo.room.dao.HistoryDao
 
 @androidx.room.Database(entities = [RoomHistoryWord::class], version = 1)
 abstract class HistoryDatabase: RoomDatabase() {
