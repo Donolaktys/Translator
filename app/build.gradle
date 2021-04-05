@@ -44,6 +44,7 @@ dependencies {
     implementation project(Modules.repo)
     implementation project(Modules.core)
     implementation project(Modules.wordsScreen)
+    implementation project(Modules.historyScreen)
     //Kotlin
     implementation Kotlin.stdlib
     implementation Kotlin.core

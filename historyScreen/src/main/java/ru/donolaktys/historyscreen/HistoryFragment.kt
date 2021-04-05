@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.view.history
+package ru.donolaktys.historyscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.donolaktys.translator.R
-import ru.donolaktys.translator.databinding.FragmentHistoryBinding
-import ru.donolaktys.translator.databinding.LoadingLayoutBinding
 import ru.donolaktys.model.AppState
 import ru.donolaktys.core.base.BaseFragment
+import ru.donolaktys.core.databinding.LoadingLayoutBinding
+import ru.donolaktys.historyscreen.databinding.FragmentHistoryBinding
 import ru.donolaktys.utils.BackButtonListener
 
 class HistoryFragment : BaseFragment<AppState, HistoryFragmentInteractor>(), BackButtonListener {
@@ -34,12 +33,12 @@ class HistoryFragment : BaseFragment<AppState, HistoryFragmentInteractor>(), Bac
 
     private fun initViewModel() {
         if (binding?.historyFragmentRecyclerview?.adapter != null) {
-            throw IllegalStateException("The ViewModel should be initialised first")
+            throw IllegalStateException(getString(R.string.init_vm_error))
         }
         val viewModel: HistoryViewModel by viewModel()
         model = viewModel
         model.subscribe()
-            .observe(viewLifecycleOwner, Observer<ru.donolaktys.model.AppState> { renderData(it) })
+            .observe(viewLifecycleOwner, Observer<AppState> { renderData(it) })
     }
 
     private fun initViews() {

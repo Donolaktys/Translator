@@ -21,7 +21,7 @@ object Modules {
     const val repo = ":repo"
     const val utils = ":utils"
     //Features
-//    const val historyScreen = ":historyScreen"
+    const val historyScreen = ":historyScreen"
     const val wordsScreen = ":wordsScreen"
 }
 

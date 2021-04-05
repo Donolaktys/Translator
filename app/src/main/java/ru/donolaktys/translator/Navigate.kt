@@ -8,8 +8,7 @@ import ru.donolaktys.translator.Navigate.Screens.DescriptionScreen
 import ru.donolaktys.translator.Navigate.Screens.HistoryScreen
 import ru.donolaktys.translator.Navigate.Screens.WordsScreen
 import ru.donolaktys.translator.view.description.DescriptionFragment
-import ru.donolaktys.translator.view.history.HistoryFragment
-import ru.donolaktys.wordsscreen.WordsFragment
+import ru.donolaktys.historyscreen.HistoryFragment
 
 class Navigate(private val modo: Modo) : INavigation<Modo> {
     override fun toWordsScreen() {

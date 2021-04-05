@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.view.history
+package ru.donolaktys.historyscreen
 
 import androidx.lifecycle.LiveData
 import com.github.terrakok.modo.Modo

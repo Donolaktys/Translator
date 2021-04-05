@@ -1,10 +1,10 @@
-package ru.donolaktys.translator.view.history
+package ru.donolaktys.historyscreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import ru.donolaktys.translator.databinding.FragmentHistoryRecyclerviewItemBinding
+import ru.donolaktys.historyscreen.databinding.FragmentHistoryRecyclerviewItemBinding
 import ru.donolaktys.model.DataModel
 
 class HistoryFragmentAdapter : RecyclerView.Adapter<HistoryFragmentAdapter.RecyclerItemViewHolder>() {

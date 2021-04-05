@@ -1,0 +1,33 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    buildFeatures {
+        viewBinding true
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation project(Modules.utils)
+    implementation project(Modules.model)
+    implementation project(Modules.repo)
+    implementation project(Modules.core)
+
+    implementation Kotlin.coroutines_core
+
+    implementation Design.material
+
+    implementation Modo.modo
+
+    implementation Koin.koin_view_model
+
+    testImplementation TestImpl.junit
+    androidTestImplementation TestImpl.runner
+    androidTestImplementation TestImpl.espresso
+}

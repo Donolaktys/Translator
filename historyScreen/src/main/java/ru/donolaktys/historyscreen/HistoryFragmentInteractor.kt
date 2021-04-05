@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.view.history
+package ru.donolaktys.historyscreen
 
 import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel

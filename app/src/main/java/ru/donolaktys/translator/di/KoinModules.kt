@@ -14,10 +14,8 @@ import ru.donolaktys.repo.repository.RepositoryImplementation
 import ru.donolaktys.repo.repository.RepositoryImplementationLocal
 import ru.donolaktys.repo.repository.RepositoryLocal
 import ru.donolaktys.translator.Navigate
-import ru.donolaktys.translator.view.history.HistoryFragmentInteractor
-import ru.donolaktys.wordsscreen.WordsFragmentInteractor
-import ru.donolaktys.translator.view.history.HistoryViewModel
-import ru.donolaktys.wordsscreen.WordsViewModel
+import ru.donolaktys.historyscreen.HistoryFragmentInteractor
+import ru.donolaktys.historyscreen.HistoryViewModel
 
 val application = module {
     single { Room.databaseBuilder(get(), HistoryDatabase::class.java, HistoryDatabase.DB_NAME).build() }
