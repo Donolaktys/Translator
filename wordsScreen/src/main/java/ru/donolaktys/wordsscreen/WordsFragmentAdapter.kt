@@ -1,10 +1,10 @@
-package ru.donolaktys.translator.view.words
+package ru.donolaktys.wordsscreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.donolaktys.model.DataModel
-import ru.donolaktys.translator.databinding.FragmentWordsRecyclerviewItemBinding
+import ru.donolaktys.wordsscreen.databinding.FragmentWordsRecyclerviewItemBinding
 
 class WordsFragmentAdapter (private var onListItemClickListener: OnListItemClickListener, private var data: List<DataModel>) :
 RecyclerView.Adapter<WordsFragmentAdapter.RecyclerItemViewHolder>() {

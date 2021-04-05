@@ -9,7 +9,7 @@ import ru.donolaktys.translator.Navigate.Screens.HistoryScreen
 import ru.donolaktys.translator.Navigate.Screens.WordsScreen
 import ru.donolaktys.translator.view.description.DescriptionFragment
 import ru.donolaktys.translator.view.history.HistoryFragment
-import ru.donolaktys.translator.view.words.WordsFragment
+import ru.donolaktys.wordsscreen.WordsFragment
 
 class Navigate(private val modo: Modo) : INavigation<Modo> {
     override fun toWordsScreen() {
@@ -25,7 +25,7 @@ class Navigate(private val modo: Modo) : INavigation<Modo> {
     }
 
     object Screens {
-        fun WordsScreen() = AppScreen("WordsScreen") { WordsFragment() }
+        fun WordsScreen() = AppScreen("WordsScreen") { ru.donolaktys.wordsscreen.WordsFragment() }
         fun HistoryScreen() = AppScreen("HistoryScreen") { HistoryFragment() }
         fun DescriptionScreen(text: String, translation: String, imageUrl: String) =
             AppScreen("DescriptionScreen") {

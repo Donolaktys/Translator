@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.view.words
+package ru.donolaktys.wordsscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.android.viewmodel.ext.android.viewModel
-import ru.donolaktys.translator.R
 import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel
-import ru.donolaktys.translator.databinding.FragmentWordsBinding
 import ru.donolaktys.core.base.BaseFragment
 import ru.donolaktys.utils.BackButtonListener
+import ru.donolaktys.utils.network.isOnline
+import ru.donolaktys.wordsscreen.databinding.FragmentWordsBinding
 
 class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(),
     BackButtonListener {
@@ -33,7 +33,7 @@ class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(),
             searchDialogFragment.setOnSearchListener(object :
                 SearchDialogFragment.OnSearchListener {
                 override fun onClick(searchWord: String) {
-                    isNetworkAvailable = ru.donolaktys.utils.network.isOnline(requireContext())
+                    isNetworkAvailable = isOnline(requireContext())
                     if (isNetworkAvailable) {
                         model.getData(searchWord, true)
                     } else {
@@ -106,7 +106,7 @@ class WordsFragment : BaseFragment<AppState, WordsFragmentInteractor>(),
         showViewError()
         binding?.errorTextview?.text = error ?: getString(R.string.undefined_error)
         binding?.reloadButton?.setOnClickListener {
-            isNetworkAvailable = ru.donolaktys.utils.network.isOnline(requireContext())
+            isNetworkAvailable = isOnline(requireContext())
             if (isNetworkAvailable) {
                 model.getData("search", isNetworkAvailable)
             } else {

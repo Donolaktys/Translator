@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.view.words
+package ru.donolaktys.wordsscreen
 
 import android.os.Bundle
 import android.text.Editable
@@ -12,7 +12,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
-import ru.donolaktys.translator.databinding.SearchDialogFragmentBinding
+import ru.donolaktys.wordsscreen.databinding.SearchDialogFragmentBinding
+
 
 class SearchDialogFragment : BottomSheetDialogFragment(), TextView.OnEditorActionListener {
 

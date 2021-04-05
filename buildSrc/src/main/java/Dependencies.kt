@@ -22,6 +22,7 @@ object Modules {
     const val utils = ":utils"
     //Features
 //    const val historyScreen = ":historyScreen"
+    const val wordsScreen = ":wordsScreen"
 }
 
 object Versions {

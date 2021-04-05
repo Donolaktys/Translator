@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.back
 import kotlinx.coroutines.launch
-import ru.donolaktys.translator.App.parseLocalSearchResults
+import ru.donolaktys.core.parseLocalSearchResults
 import ru.donolaktys.model.AppState
 import ru.donolaktys.core.viewmodel.BaseViewModel
 

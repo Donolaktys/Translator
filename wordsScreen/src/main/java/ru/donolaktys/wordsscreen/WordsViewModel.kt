@@ -1,11 +1,11 @@
-package ru.donolaktys.translator.view.words
+package ru.donolaktys.wordsscreen
 
 import androidx.lifecycle.LiveData
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.exit
 import kotlinx.coroutines.launch
 import ru.donolaktys.core.INavigation
-import ru.donolaktys.translator.App.parseOnlineSearchResults
+import ru.donolaktys.core.parseOnlineSearchResults
 import ru.donolaktys.model.AppState
 import ru.donolaktys.core.viewmodel.BaseViewModel
 

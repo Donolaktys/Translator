@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.App
+package ru.donolaktys.core
 
 import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel

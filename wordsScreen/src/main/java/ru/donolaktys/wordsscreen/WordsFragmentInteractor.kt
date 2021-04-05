@@ -1,4 +1,4 @@
-package ru.donolaktys.translator.view.words
+package ru.donolaktys.wordsscreen
 
 import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel

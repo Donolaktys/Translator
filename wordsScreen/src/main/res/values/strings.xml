@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">wordsScreen</string>
+    <string name="empty_server_response_on_success">Response from server is empty</string>
+    <string name="undefined_error">Undefined error</string>
+    <string name="description_search_word">Search word</string>
+    <string name="error_textview_stub">Error</string>
+    <string name="reload_button">Reload</string>
+    <string name="search_hint">Search</string>
+    <string name="delete_description">Delete search item</string>
+</resources>

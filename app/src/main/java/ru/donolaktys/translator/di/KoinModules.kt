@@ -15,9 +15,9 @@ import ru.donolaktys.repo.repository.RepositoryImplementationLocal
 import ru.donolaktys.repo.repository.RepositoryLocal
 import ru.donolaktys.translator.Navigate
 import ru.donolaktys.translator.view.history.HistoryFragmentInteractor
-import ru.donolaktys.translator.view.words.WordsFragmentInteractor
+import ru.donolaktys.wordsscreen.WordsFragmentInteractor
 import ru.donolaktys.translator.view.history.HistoryViewModel
-import ru.donolaktys.translator.view.words.WordsViewModel
+import ru.donolaktys.wordsscreen.WordsViewModel
 
 val application = module {
     single { Room.databaseBuilder(get(), HistoryDatabase::class.java, HistoryDatabase.DB_NAME).build() }
@@ -31,8 +31,8 @@ val application = module {
 }
 
 val wordScreen = module {
-    factory { WordsViewModel(get(), get()) }
-    factory { WordsFragmentInteractor(get(), get()) }
+    factory { ru.donolaktys.wordsscreen.WordsViewModel(get(), get()) }
+    factory { ru.donolaktys.wordsscreen.WordsFragmentInteractor(get(), get()) }
 }
 
 val historyScreen = module {
