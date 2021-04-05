@@ -2,7 +2,6 @@ package ru.donolaktys.repo
 
 import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel
-import ru.donolaktys.model.Meanings
 import ru.donolaktys.repo.room.RoomHistoryWord
 
 fun mapHistoryEntityToSearchResult(list: List<RoomHistoryWord>): List<ru.donolaktys.model.DataModel> {
