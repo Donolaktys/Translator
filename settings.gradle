@@ -1,2 +1,8 @@
+include ':historyScreen'
+include ':wordsScreen'
+include ':core'
+include ':repo'
+include ':model'
+include ':utils'
 include ':app'
 rootProject.name = "Translator"

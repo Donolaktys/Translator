@@ -1,0 +1,25 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation project(Modules.model)
+
+    implementation Retrofit.adapter_coroutines
+
+    implementation Room.runtime
+    kapt Room.compiler
+    implementation Room.room_ktx
+
+    testImplementation TestImpl.junit
+    androidTestImplementation TestImpl.runner
+    androidTestImplementation TestImpl.espresso
+}

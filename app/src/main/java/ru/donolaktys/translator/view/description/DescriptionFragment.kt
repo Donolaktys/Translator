@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.multidex.BuildConfig
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -16,17 +17,16 @@ import com.bumptech.glide.request.target.Target
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.back
 import org.koin.android.ext.android.inject
-import ru.donolaktys.translator.BuildConfig
+import ru.donolaktys.core.INavigation
 import ru.donolaktys.translator.R
 import ru.donolaktys.translator.databinding.FragmentDescriptionBinding
-import ru.donolaktys.translator.model.data.DataModel
-import ru.donolaktys.translator.utils.BackButtonListener
-import ru.donolaktys.translator.utils.network.isOnline
-import ru.donolaktys.translator.utils.ui.AlertDialogFragment
+import ru.donolaktys.utils.BackButtonListener
+import ru.donolaktys.utils.network.isOnline
+import ru.donolaktys.utils.ui.AlertDialogFragment
 
 class DescriptionFragment : Fragment(), BackButtonListener {
 
-    private val modo: Modo by inject()
+    private val navigate: INavigation<Modo> by inject()
     private var binding: FragmentDescriptionBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -116,17 +116,18 @@ class DescriptionFragment : Fragment(), BackButtonListener {
         private const val DESCRIPTION_TAG = APP_ID + ".DESCRIPTION_TAG"
         private const val URL_TAG = APP_ID + ".URL_TAG"
 
-        fun newInstance(data: DataModel) = DescriptionFragment().apply {
-            arguments = Bundle().apply {
-                putString(WORD_TAG, data.text)
-                putString(DESCRIPTION_TAG, data.meanings?.get(0)?.translation?.translation)
-                putString(URL_TAG, data.meanings?.get(0)?.imageUrl)
+        fun newInstance(text: String, translation: String, imageUrl: String) =
+            DescriptionFragment().apply {
+                arguments = Bundle().apply {
+                    putString(WORD_TAG, text)
+                    putString(DESCRIPTION_TAG, translation)
+                    putString(URL_TAG, imageUrl)
+                }
             }
-        }
     }
 
     override fun backPressed(): Boolean {
-        modo.back()
+        navigate.getRouter().back()
         return true
     }
 }
