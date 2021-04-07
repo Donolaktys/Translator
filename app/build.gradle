@@ -48,8 +48,6 @@ dependencies {
     //Kotlin
     implementation Kotlin.stdlib
     implementation Kotlin.core
-    implementation Kotlin.coroutines_core
-    implementation Kotlin.coroutines_android
     //AndroidX
     implementation Tools.multidex
     //Design
@@ -58,13 +56,10 @@ dependencies {
     implementation Design.constraintlayout
     implementation Design.swiperefreshlayout
     //Retrofit 2
-    implementation Retrofit.retrofit
     implementation Retrofit.converter_gson
-    implementation Retrofit.adapter_rxjava3
     implementation Retrofit.adapter_coroutines
     //Koin for Android
     implementation Koin.koin_android
-    implementation Koin.koin_view_model
     //Glide
     implementation Glide.glide
     kapt Glide.glide_compiler

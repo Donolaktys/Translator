@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Translator"
         android:name=".App.TranslatorApp">
-        <activity android:name="ru.donolaktys.translator.view.main.MainActivity">
+        <activity android:name=".view.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,7 +4,7 @@ import ru.donolaktys.model.AppState
 import ru.donolaktys.model.DataModel
 import ru.donolaktys.repo.room.RoomHistoryWord
 
-fun mapHistoryEntityToSearchResult(list: List<RoomHistoryWord>): List<ru.donolaktys.model.DataModel> {
+fun mapHistoryEntityToSearchResult(list: List<RoomHistoryWord>): List<DataModel> {
     val searchResult = ArrayList<DataModel>()
     if (!list.isNullOrEmpty()) {
         for (entity in list) {

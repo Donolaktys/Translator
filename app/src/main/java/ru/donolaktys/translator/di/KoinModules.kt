@@ -25,6 +25,8 @@ import ru.donolaktys.historyscreen.HistoryFragmentInteractor
 import ru.donolaktys.historyscreen.HistoryViewModel
 import ru.donolaktys.repo.api.ApiService
 import ru.donolaktys.repo.api.BaseInterceptor
+import ru.donolaktys.wordsscreen.WordsFragmentInteractor
+import ru.donolaktys.wordsscreen.WordsViewModel
 
 private const val BASE_URL_LOCATIONS = "https://dictionary.skyeng.ru/api/public/v1/"
 
@@ -64,8 +66,8 @@ val application = module {
 }
 
 val wordScreen = module {
-    factory { ru.donolaktys.wordsscreen.WordsViewModel(get(), get()) }
-    factory { ru.donolaktys.wordsscreen.WordsFragmentInteractor(get(), get()) }
+    factory { WordsViewModel(get(), get()) }
+    factory { WordsFragmentInteractor(get(), get()) }
 }
 
 val historyScreen = module {
